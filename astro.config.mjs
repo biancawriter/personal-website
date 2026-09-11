@@ -6,8 +6,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: replace with the real domain once purchased (used for sitemap, RSS, and canonical URLs).
-  site: 'https://biancawriter.github.io',
+  // Used for the sitemap, RSS feed, and canonical URLs.
+  site: 'https://www.biancaragsdale.com',
 
   vite: {
     plugins: [tailwindcss()],

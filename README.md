@@ -29,5 +29,6 @@ Requires Node 22.12+.
 
 ## Deploy
 
-Pushes to `main` build and publish via `.github/workflows/deploy.yml` to GitHub Pages.
-Once the custom domain is set up, add a `public/CNAME` file containing the domain and update `site` in `astro.config.mjs`.
+Pushes to `main` build and publish via `.github/workflows/deploy.yml` to GitHub Pages at https://www.biancaragsdale.com.
+
+DNS is at Porkbun: a `CNAME` record for `www` pointing to `biancawriter.github.io`, and `A` records on the apex pointing to GitHub Pages' IPs so `biancaragsdale.com` redirects to `www`. The custom domain is set in the repo's Settings → Pages.
