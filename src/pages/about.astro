@@ -1,0 +1,34 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+---
+
+<BaseLayout title="About" description="About Bianca Ragsdale: senior technical writer, documentation manager, and docs-as-code advocate.">
+  <PageHeader title="About" />
+
+  <div class="prose prose-zinc max-w-none dark:prose-invert">
+    {/* TODO: write this in your own voice. Drafted from the resume as a starting point. */}
+    <p>
+      I am a senior technical writer with more than a decade in documentation, from managing a docs team at RED Digital Cinema to serving as the sole technical writer at LandingAI, where I own documentation strategy and execution for an AI product.
+    </p>
+    <p>
+      Lately my work sits at the intersection of writing and tooling: migrating docs to docs-as-code platforms, turning raw OpenAPI specs into publishable API references, and building agentic workflows that keep documentation in sync with the code it describes.
+    </p>
+    <p>
+      I studied English at UC Irvine, with minors in Spanish and Management. I am based in Glendale, California.
+    </p>
+
+    <h2>Outside of work</h2>
+    <p>
+      {/* TODO: hobbies, interests, reading. */}
+      Coming soon.
+    </p>
+
+    <h2>Résumé</h2>
+    <p>
+      <a href="/BiancaRagsdale-Resume.pdf" class="btn no-underline">Download résumé (PDF)</a>{' '}
+      <a href="/BiancaRagsdale-Resume.md" class="btn-secondary no-underline">Markdown version</a>
+    </p>
+    <p class="text-sm">This site, like my résumé, is constantly evolving.</p>
+  </div>
+</BaseLayout>

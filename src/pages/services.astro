@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { SERVICES } from '../data/services';
+import { SOCIAL } from '../consts';
+
+const linkedin = SOCIAL.find((s) => s.label === 'LinkedIn');
+---
+
+<BaseLayout title="Services" description="Technical writing, documentation automation, and authoring-tool consulting and migration services.">
+  <PageHeader
+    title="Services"
+    intro="I work with product and engineering teams on a contract or consulting basis. Here is what that usually looks like."
+  />
+
+  <div class="grid gap-10 sm:grid-cols-2">
+    {
+      SERVICES.map(({ title, description }) => (
+        <section>
+          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">{title}</h2>
+          <p class="mt-2 text-zinc-600 dark:text-zinc-400">{description}</p>
+        </section>
+      ))
+    }
+  </div>
+
+  <section class="mt-16 rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+    <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Interested?</h2>
+    <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+      {/* TODO: decide how you want to be contacted. */}
+      The easiest way to reach me is on{' '}
+      <a href={linkedin?.href} class="link" rel="me noopener" target="_blank">LinkedIn</a>. Tell me a little about your docs and what is not working, and I will follow up.
+    </p>
+  </section>
+</BaseLayout>

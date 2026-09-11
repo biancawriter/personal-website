@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { RESOURCES, TOOLS } from '../data/resources';
+
+const sections = [
+  { heading: 'Communities and people worth reading', items: RESOURCES },
+  { heading: 'Tools I use', items: TOOLS },
+];
+---
+
+<BaseLayout title="Resources" description="Communities, blogs, and tools Bianca Ragsdale recommends for technical writers.">
+  <PageHeader title="Resources" intro="Things I have found useful as a technical writer. This list is constantly evolving." />
+
+  {
+    sections.map(({ heading, items }) => (
+      <section class="mb-14">
+        <h2 class="mb-4 text-xl font-semibold text-zinc-900 dark:text-zinc-100">{heading}</h2>
+        <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">
+          {items.map(({ title, url, description }) => (
+            <li class="py-4 first:pt-0">
+              <a href={url} class="font-medium text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-dark" rel="noopener" target="_blank">
+                {title} ↗
+              </a>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    ))
+  }
+</BaseLayout>

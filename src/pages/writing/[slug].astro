@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <article>
+    <header class="mb-8">
+      <p class="text-sm text-zinc-500">
+        <FormattedDate date={post.data.pubDate} />
+        {post.data.updatedDate && (
+          <span>
+            {' '}· Updated <FormattedDate date={post.data.updatedDate} />
+          </span>
+        )}
+      </p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
+        {post.data.title}
+      </h1>
+      {post.data.tags.length > 0 && (
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {post.data.tags.map((tag) => (
+            <li class="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-600 dark:border-zinc-800 dark:text-zinc-400">
+              {tag}
+            </li>
+          ))}
+        </ul>
+      )}
+    </header>
+
+    <div class="prose prose-zinc max-w-none dark:prose-invert">
+      <Content />
+    </div>
+  </article>
+
+  <p class="mt-12">
+    <a href="/writing/" class="link text-sm">← All writing</a>
+  </p>
+</BaseLayout>

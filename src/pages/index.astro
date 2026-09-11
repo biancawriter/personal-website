@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../consts';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="flex flex-col-reverse gap-8 sm:flex-row sm:items-center sm:justify-between">
+    <div class="max-w-xl">
+      <h1 class="text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-100">
+        {SITE.title}
+      </h1>
+      <p class="mt-4 text-xl text-zinc-600 dark:text-zinc-400">
+        {/* TODO: edit this pitch. */}
+        Senior technical writer. I build developer documentation that people and AI agents can use — and the docs-as-code workflows that keep it accurate.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/services/" class="btn">Work with me</a>
+        <a href="/work/" class="btn-secondary">See my work</a>
+      </div>
+    </div>
+    <img
+      src="/bianca-ragsdale.jpeg"
+      alt="Bianca Ragsdale"
+      width="401"
+      height="401"
+      class="size-32 shrink-0 rounded-full object-cover sm:size-40"
+    />
+  </section>
+
+  <section class="mt-20 grid gap-8 sm:grid-cols-3">
+    <a href="/services/" class="group">
+      <h2 class="font-semibold text-zinc-900 group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent-dark">Services →</h2>
+      <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        Technical writing, documentation automation, and authoring-tool consulting and migration.
+      </p>
+    </a>
+    <a href="/work/" class="group">
+      <h2 class="font-semibold text-zinc-900 group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent-dark">Work →</h2>
+      <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        Public documentation I have written and maintained.
+      </p>
+    </a>
+    <a href="/about/" class="group">
+      <h2 class="font-semibold text-zinc-900 group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent-dark">About →</h2>
+      <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+        Background, résumé, and what I do when I am not writing.
+      </p>
+    </a>
+  </section>
+
+  {
+    posts.length > 0 && (
+      <section class="mt-20">
+        <div class="flex items-baseline justify-between">
+          <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Recent writing</h2>
+          <a href="/writing/" class="link text-sm">All posts</a>
+        </div>
+        <ul class="mt-4 divide-y divide-zinc-200 dark:divide-zinc-800">
+          {posts.map((post) => (
+            <li class="py-4">
+              <a href={`/writing/${post.id}/`} class="font-medium text-zinc-900 hover:text-accent dark:text-zinc-100 dark:hover:text-accent-dark">
+                {post.data.title}
+              </a>
+              <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
+</BaseLayout>

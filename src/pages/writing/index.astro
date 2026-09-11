@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Writing" description="Posts on technical writing: content migration, SEO and GEO, OpenAPI cleanup, automating documentation workflows, and AI.">
+  <PageHeader
+    title="Writing"
+    intro="Notes on technical writing: content migration, SEO and GEO, OpenAPI spec cleanup, automating documentation workflows, and working with AI."
+  />
+
+  {
+    posts.length === 0 ? (
+      <p class="text-zinc-600 dark:text-zinc-400">Nothing published yet. Check back soon.</p>
+    ) : (
+      <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">
+        {posts.map((post) => (
+          <li class="py-6 first:pt-0">
+            <p class="text-sm text-zinc-500">
+              <FormattedDate date={post.data.pubDate} />
+              {post.data.draft && <span class="ml-2 rounded bg-amber-100 px-1.5 py-0.5 text-xs text-amber-800">draft</span>}
+            </p>
+            <h2 class="mt-1 text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              <a href={`/writing/${post.id}/`} class="hover:text-accent dark:hover:text-accent-dark">
+                {post.data.title}
+              </a>
+            </h2>
+            <p class="mt-1 text-zinc-600 dark:text-zinc-400">{post.data.description}</p>
+          </li>
+        ))}
+      </ul>
+    )
+  }
+</BaseLayout>

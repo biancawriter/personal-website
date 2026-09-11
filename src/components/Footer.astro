@@ -1,0 +1,27 @@
+---
+import { SITE, SOCIAL } from '../consts';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-zinc-200 dark:border-zinc-800">
+  <div
+    class="mx-auto flex w-full max-w-3xl flex-wrap items-center justify-between gap-x-6 gap-y-3 px-5 py-6 text-sm text-zinc-500 sm:px-6 dark:text-zinc-500"
+  >
+    <p>© {year} {SITE.author}</p>
+    <ul class="flex flex-wrap gap-x-5 gap-y-2">
+      {
+        SOCIAL.map(({ label, href }) => (
+          <li>
+            <a href={href} rel="me noopener" target="_blank" class="link">
+              {label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a href="/rss.xml" class="link">RSS</a>
+      </li>
+    </ul>
+  </div>
+</footer>
