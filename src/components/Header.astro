@@ -1,5 +1,6 @@
 ---
 import { SITE, NAV } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
 
 const currentPath = Astro.url.pathname;
 const isActive = (href: string) => currentPath === href || currentPath.startsWith(href);
@@ -10,27 +11,30 @@ const isActive = (href: string) => currentPath === href || currentPath.startsWit
     <a href="/" class="text-base font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
       {SITE.title}
     </a>
-    <nav aria-label="Main">
-      <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
-        {
-          NAV.map(({ label, href }) => (
-            <li>
-              <a
-                href={href}
-                aria-current={isActive(href) ? 'page' : undefined}
-                class:list={[
-                  'transition-colors hover:text-zinc-900 dark:hover:text-zinc-100',
-                  isActive(href)
-                    ? 'font-medium text-zinc-900 dark:text-zinc-100'
-                    : 'text-zinc-600 dark:text-zinc-400',
-                ]}
-              >
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="flex items-center gap-5">
+      <nav aria-label="Main">
+        <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm">
+          {
+            NAV.map(({ label, href }) => (
+              <li>
+                <a
+                  href={href}
+                  aria-current={isActive(href) ? 'page' : undefined}
+                  class:list={[
+                    'transition-colors hover:text-zinc-900 dark:hover:text-zinc-100',
+                    isActive(href)
+                      ? 'font-medium text-zinc-900 dark:text-zinc-100'
+                      : 'text-zinc-600 dark:text-zinc-400',
+                  ]}
+                >
+                  {label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <ThemeToggle />
+    </div>
   </div>
 </header>

@@ -1,0 +1,100 @@
+---
+/**
+ * Three-way theme switch: light / dark / system (Mintlify-style segmented pill).
+ *
+ * State lives in two places, both set by the inline script in BaseLayout.astro
+ * before first paint:
+ *   html.dark            - whether dark styles apply right now
+ *   html[data-theme]     - the user's preference: "light" | "dark" | "system"
+ * The selected button is styled purely from data-theme via the CSS below, so
+ * the highlight is correct on load without waiting for JavaScript.
+ */
+const OPTIONS = [
+  { value: 'light', label: 'Light' },
+  { value: 'dark', label: 'Dark' },
+  { value: 'system', label: 'System' },
+] as const;
+---
+
+<div
+  id="theme-switch"
+  role="radiogroup"
+  aria-label="Color theme"
+  class="flex items-center rounded-full border border-zinc-300 p-0.5 dark:border-zinc-700"
+>
+  {
+    OPTIONS.map(({ value, label }) => (
+      <button
+        type="button"
+        role="radio"
+        data-value={value}
+        aria-label={label}
+        title={label}
+        class="theme-option rounded-full p-1 text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-500 dark:hover:text-zinc-100"
+      >
+        {value === 'light' && (
+          <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+        )}
+        {value === 'dark' && (
+          <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        )}
+        {value === 'system' && (
+          <svg class="size-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+            <path d="M8 21h8M12 17v4"></path>
+          </svg>
+        )}
+      </button>
+    ))
+  }
+</div>
+
+<style>
+  /* Highlight whichever option matches html[data-theme]. */
+  :global(html[data-theme='light']) .theme-option[data-value='light'],
+  :global(html[data-theme='dark']) .theme-option[data-value='dark'],
+  :global(html[data-theme='system']) .theme-option[data-value='system'] {
+    background-color: var(--color-zinc-200);
+    color: var(--color-zinc-900);
+  }
+  :global(html.dark[data-theme='light']) .theme-option[data-value='light'],
+  :global(html.dark[data-theme='dark']) .theme-option[data-value='dark'],
+  :global(html.dark[data-theme='system']) .theme-option[data-value='system'] {
+    background-color: var(--color-zinc-800);
+    color: var(--color-zinc-100);
+  }
+</style>
+
+<script>
+  const root = document.documentElement;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function apply(pref: string) {
+    root.dataset.theme = pref;
+    root.classList.toggle('dark', pref === 'dark' || (pref === 'system' && media.matches));
+    document
+      .querySelectorAll<HTMLButtonElement>('#theme-switch .theme-option')
+      .forEach((btn) => btn.setAttribute('aria-checked', String(btn.dataset.value === pref)));
+  }
+
+  document.querySelectorAll<HTMLButtonElement>('#theme-switch .theme-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const pref = btn.dataset.value!;
+      if (pref === 'system') localStorage.removeItem('theme');
+      else localStorage.setItem('theme', pref);
+      apply(pref);
+    });
+  });
+
+  // Keep following the OS while "system" is selected.
+  media.addEventListener('change', () => {
+    if (root.dataset.theme === 'system') apply('system');
+  });
+
+  apply(root.dataset.theme ?? 'system');
+</script>

@@ -41,6 +41,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta name="twitter:card" content="summary" />
+
+    {/* Runs before paint so the page never flashes the wrong theme. Keep in sync with ThemeToggle.astro. */}
+    <script is:inline>
+      (() => {
+        const pref = localStorage.getItem('theme') ?? 'system';
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        document.documentElement.dataset.theme = pref;
+        document.documentElement.classList.toggle('dark', pref === 'dark' || (pref === 'system' && prefersDark));
+      })();
+    </script>
   </head>
   <body class="flex min-h-screen flex-col">
     <Header />

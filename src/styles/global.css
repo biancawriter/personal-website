@@ -2,6 +2,13 @@
 @plugin "@tailwindcss/typography";
 
 /*
+  Dark mode is driven by an `html.dark` class instead of prefers-color-scheme,
+  so the header toggle can override the OS setting. The class is applied by the
+  inline script in BaseLayout.astro before first paint.
+*/
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
   Design tokens. Tailwind v4 reads these into utility classes:
   --color-accent -> text-accent, bg-accent, border-accent, etc.
 */
@@ -16,8 +23,12 @@
 
 @layer base {
   html {
-    color-scheme: light dark;
+    color-scheme: light;
     scroll-behavior: smooth;
+  }
+
+  html.dark {
+    color-scheme: dark;
   }
 
   body {
