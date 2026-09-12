@@ -25,9 +25,10 @@ import PageHeader from '../components/PageHeader.astro';
     </p>
 
     <h2>Résumé</h2>
-    <p>
-      <a href="/BiancaRagsdale-Resume.pdf" class="btn no-underline">Download résumé (PDF)</a>{' '}
-      <a href="/BiancaRagsdale-Resume.md" class="btn-secondary no-underline">Markdown version</a>
+    {/* not-prose: keeps Typography's link styles from recoloring the buttons. */}
+    <p class="not-prose flex flex-wrap gap-3">
+      <a href="/BiancaRagsdale-Resume.pdf" class="btn-secondary">Download résumé (PDF)</a>
+      <a href="/BiancaRagsdale-Resume.md" class="btn-secondary">Markdown version</a>
     </p>
     <p class="text-sm">This site, like my résumé, is constantly evolving.</p>
   </div>
