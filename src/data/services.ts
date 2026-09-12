@@ -6,12 +6,12 @@ export const SERVICES = [
   {
     title: 'Technical writing',
     description:
-      'Developer documentation that people and AI agents can actually use: overviews, task-based guides, API references, and SDK docs. I write and test the sample code myself.',
+      'Developer documentation that people and AI agents can actually use: overviews, task-based guides, API references, and SDK docs. I write and test code samples.',
   },
   {
     title: 'Documentation automation',
     description:
-      'Agentic workflows that watch your engineering repos, flag PRs that affect customer-facing docs, and draft updates grounded in your style guide — so docs stay accurate as the product changes.',
+      'Agentic workflows that watch your engineering repos, flag PRs that impact customer-facing docs, and draft updates grounded in your style guide. I create systems that ensure your docs stay accurate as the product changes.',
   },
   {
     title: 'Authoring tool consulting',
@@ -21,6 +21,6 @@ export const SERVICES = [
   {
     title: 'Authoring tool migration',
     description:
-      'End-to-end migrations — Word and InDesign to Flare, an internal wiki to Flare, Document360 to Mintlify — including information-architecture overhauls and cross-functional adoption.',
+      'End-to-end migrations that include information-architecture overhauls and cross-functional adoption.',
   },
 ] as const;
