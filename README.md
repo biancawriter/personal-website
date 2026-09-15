@@ -21,6 +21,16 @@ npx astro dev stop           # stop
 
 Requires Node 22.12+.
 
+## Images
+
+`public/og.png` (the social preview card), `public/favicon.ico`, and `public/apple-touch-icon.png` are generated files. After changing the name, tagline, photo, or `public/favicon.svg`, regenerate them:
+
+```sh
+npm run images
+```
+
+The script is `scripts/og-image.mjs`.
+
 ## Where things live
 
 | Path | What |
@@ -33,7 +43,7 @@ Requires Node 22.12+.
 | `src/pages/` | One file per route |
 | `src/layouts/BaseLayout.astro` | `<head>`, header, footer |
 | `src/styles/global.css` | Tailwind import, design tokens (accent color, fonts) |
-| `public/` | Static files served as-is (favicon, photo, résumé PDF and Markdown) |
+| `public/` | Static files served as-is (favicons, `og.png` social preview, photo, résumé PDF and Markdown) |
 
 ## Deploy
 
