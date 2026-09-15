@@ -9,7 +9,7 @@
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import { SITE } from '../consts';
+import { SITE, SHOW_WRITING } from '../consts';
 
 interface Props {
   title?: string;
@@ -29,7 +29,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" href="/favicon.ico" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="alternate" type="application/rss+xml" title={`${SITE.title} — Writing`} href="/rss.xml" />
+    {SHOW_WRITING && <link rel="alternate" type="application/rss+xml" title={`${SITE.title} — Writing`} href="/rss.xml" />}
     <link rel="canonical" href={canonical} />
 
     <title>{fullTitle}</title>

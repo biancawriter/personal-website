@@ -32,6 +32,7 @@ Portfolio and services site for a senior technical writer. See README.md for the
 - Dark mode is an `html.dark` class (Tailwind `@custom-variant dark`), set before paint by an inline script in `BaseLayout.astro`. `ThemeToggle.astro` is a three-way light/dark/system switch; the preference is `html[data-theme]`, persisted in `localStorage.theme` (absent = system).
 - Never put a phone number, email address, or mailing address on any page. Contact goes through the links in `SOCIAL` (`src/consts.ts`).
 - `draft: true` posts render in `astro dev` but are excluded from production builds and RSS.
+- `SHOW_WRITING` in `src/consts.ts` hides the whole Writing section (nav item, home-page list, RSS links, sitemap entries) while there are no posts. The pages stay in the repo.
 - Astro 7 uses a strict HTML compiler: close every tag, and use `{' '}` between adjacent inline elements where a space is needed.
 
 ## Language and Writing Style

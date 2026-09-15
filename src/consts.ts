@@ -11,13 +11,20 @@ export const SITE = {
   location: 'Glendale, CA',
 };
 
+/**
+ * Set to true when there are posts to show. Controls the Writing nav item, the
+ * "Recent writing" section on the home page, the RSS links, and whether the
+ * /writing/ pages appear in the sitemap. The pages and posts stay in the repo.
+ */
+export const SHOW_WRITING = false;
+
 export const NAV = [
   { label: 'Services', href: '/services/' },
   { label: 'Work', href: '/work/' },
   { label: 'Writing', href: '/writing/' },
   { label: 'Resources', href: '/resources/' },
   { label: 'About', href: '/about/' },
-] as const;
+].filter(({ href }) => SHOW_WRITING || href !== '/writing/');
 
 export const SOCIAL = [
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/biancaragsdale/' },

@@ -25,7 +25,7 @@ Requires Node 22.12+.
 
 | Path | What |
 |---|---|
-| `src/consts.ts` | Site title, nav items, social links |
+| `src/consts.ts` | Site title, nav items, social links, and the `SHOW_WRITING` flag that hides the blog until there are posts |
 | `src/data/services.ts`, `src/data/resources.ts` | Copy for the Services and Resources pages |
 | `src/content/blog/*.md` | Blog posts. Filename = URL slug. Set `draft: true` to hide from production. |
 | `src/content/work/*.md` | Portfolio entries (one file per project) |

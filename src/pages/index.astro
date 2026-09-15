@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE } from '../consts';
+import { SITE, SHOW_WRITING } from '../consts';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog', ({ data }) => !data.draft || import.meta.env.DEV))
@@ -54,7 +54,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft || import.m
   </section>
 
   {
-    posts.length > 0 && (
+    SHOW_WRITING && posts.length > 0 && (
       <section class="mt-20">
         <div class="flex items-baseline justify-between">
           <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">Recent writing</h2>

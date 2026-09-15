@@ -1,5 +1,5 @@
 ---
-import { SITE, SOCIAL } from '../consts';
+import { SITE, SOCIAL, SHOW_WRITING } from '../consts';
 
 const year = new Date().getFullYear();
 ---
@@ -19,9 +19,11 @@ const year = new Date().getFullYear();
           </li>
         ))
       }
-      <li>
-        <a href="/rss.xml" class="link">RSS</a>
-      </li>
+      {SHOW_WRITING && (
+        <li>
+          <a href="/rss.xml" class="link">RSS</a>
+        </li>
+      )}
     </ul>
   </div>
 </footer>
