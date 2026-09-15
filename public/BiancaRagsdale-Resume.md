@@ -1,6 +1,6 @@
 # **BIANCA RAGSDALE**
 
-[LinkedIn](https://www.linkedin.com/in/biancaragsdale/) • [GitHub](https://github.com/biancawriter)
+[LinkedIn](https://www.linkedin.com/in/biancaragsdale/) • [GitHub](https://github.com/biancawriter) • [Website](https://www.biancaragsdale.com)
 
 # **EXPERIENCE**
 
