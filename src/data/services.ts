@@ -1,6 +1,5 @@
 /**
  * Services offered. Rendered on /services/.
- * TODO: edit the copy — these are starting points drafted from the resume.
  */
 export const SERVICES = [
   {
