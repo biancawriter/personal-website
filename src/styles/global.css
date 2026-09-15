@@ -57,6 +57,20 @@
   }
 }
 
+/*
+  Short rendered Markdown that should look like plain page text (e.g. Work
+  entry descriptions). Use `prose` instead for long-form content.
+*/
+.rich p + p {
+  @apply mt-3;
+}
+.rich a {
+  @apply text-accent underline decoration-accent/40 underline-offset-4 transition-colors hover:decoration-accent dark:text-accent-dark dark:decoration-accent-dark/40 dark:hover:decoration-accent-dark;
+}
+.rich code {
+  @apply rounded bg-zinc-100 px-1 py-0.5 text-[0.9em] dark:bg-zinc-800;
+}
+
 /* Long-form content (blog posts, about page) uses Tailwind Typography's `prose` classes. */
 .prose a {
   @apply font-normal text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent dark:text-accent-dark dark:decoration-accent-dark/40 dark:hover:decoration-accent-dark;

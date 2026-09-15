@@ -6,9 +6,17 @@ Portfolio and professional-services site for Bianca Ragsdale, built with [Astro]
 
 ```sh
 npm install
-npm run dev        # http://localhost:4321
+npm run dev        # start the dev server at http://localhost:4321 (Ctrl+C to stop)
 npm run build      # static output in dist/
 npm run preview    # serve dist/ locally
+```
+
+To keep the dev server running without holding the terminal, start it in the background:
+
+```sh
+npx astro dev --background   # start
+npx astro dev status         # check whether it is running
+npx astro dev stop           # stop
 ```
 
 Requires Node 22.12+.

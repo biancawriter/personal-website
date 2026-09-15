@@ -4,9 +4,7 @@ import PageHeader from '../components/PageHeader.astro';
 import { getCollection, render } from 'astro:content';
 
 const items = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
-const rendered = await Promise.all(
-  items.map(async (item) => ({ item, Content: (await render(item)).Content, hasBody: !!item.body?.trim() })),
-);
+const rendered = await Promise.all(items.map(async (item) => ({ item, Content: (await render(item)).Content })));
 ---
 
 <BaseLayout title="Work" description="Public documentation Bianca Ragsdale has written and maintained.">
@@ -14,21 +12,22 @@ const rendered = await Promise.all(
 
   <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">
     {
-      rendered.map(({ item, Content, hasBody }) => (
+      rendered.map(({ item, Content }) => (
         <li class="py-8 first:pt-0">
           <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
             <a href={item.data.url} class="hover:text-accent dark:hover:text-accent-dark" rel="noopener" target="_blank">
               {item.data.title} ↗
             </a>
           </h2>
-          <p class="mt-1 text-sm text-zinc-500">
-            {item.data.org} · {item.data.role}
-          </p>
-          <p class="mt-3 text-zinc-600 dark:text-zinc-400">{item.data.summary}</p>
-          {hasBody && (
-            <div class="prose prose-zinc mt-3 dark:prose-invert">
-              <Content />
-            </div>
+          <p class="mt-1 text-sm text-zinc-500">{item.data.org}</p>
+          {/* Description: the entry's Markdown body, styled to match plain page text. */}
+          <div class="rich mt-3 text-zinc-600 dark:text-zinc-400">
+            <Content />
+          </div>
+          {item.data.tools.length > 0 && (
+            <p class="mt-3 text-sm text-zinc-500">
+              <span class="font-medium">Built with:</span> {item.data.tools.join(', ')}
+            </p>
           )}
         </li>
       ))

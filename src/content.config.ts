@@ -21,16 +21,17 @@ const blog = defineCollection({
 
 /**
  * Portfolio items: src/content/work/<slug>.md
- * Each file is one project. Body text is an optional longer description.
+ * Each file is one project. The Markdown body is the description, so links and
+ * inline code work there.
  */
 const work = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
   schema: z.object({
     title: z.string(),
     org: z.string(),
-    role: z.string(),
     url: z.url(),
-    summary: z.string(),
+    // Tools or platforms used. Shown as a short line under the description.
+    tools: z.array(z.string()).default([]),
     // Lower numbers appear first.
     order: z.number().default(100),
   }),

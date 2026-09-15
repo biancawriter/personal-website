@@ -8,6 +8,8 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+Restart the dev server after editing `src/content.config.ts`. It does not reliably pick up schema changes, and a stale schema makes a collection render as empty.
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
