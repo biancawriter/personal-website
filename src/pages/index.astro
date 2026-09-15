@@ -15,12 +15,11 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft || import.m
         {SITE.title}
       </h1>
       <p class="mt-4 text-xl text-zinc-600 dark:text-zinc-400">
-        {/* TODO: edit this pitch. */}
-        Senior technical writer. I build developer documentation that people and AI agents can use — and the docs-as-code workflows that keep it accurate.
+        Senior technical writer. I build developer documentation that people and AI agents can use, and the docs-as-code workflows that keep it accurate. Open to full-time roles and consulting.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a href="/services/" class="btn">Work with me</a>
-        <a href="/work/" class="btn-secondary">See my work</a>
+        <a href="/work/" class="btn">See my work</a>
+        <a href="/services/" class="btn-secondary">How we can work together</a>
       </div>
     </div>
     <img
@@ -36,7 +35,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft || import.m
     <a href="/services/" class="group">
       <h2 class="font-semibold text-zinc-900 group-hover:text-accent dark:text-zinc-100 dark:group-hover:text-accent-dark">Services →</h2>
       <p class="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-        Technical writing, documentation automation, and authoring-tool consulting and migration.
+        What I do, and how we can work together: full-time or consulting.
       </p>
     </a>
     <a href="/work/" class="group">

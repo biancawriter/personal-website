@@ -7,10 +7,10 @@ import { SOCIAL } from '../consts';
 const linkedin = SOCIAL.find((s) => s.label === 'LinkedIn');
 ---
 
-<BaseLayout title="Services" description="Technical writing, documentation automation, and authoring-tool consulting and migration services.">
+<BaseLayout title="Services" description="Senior technical writer open to full-time roles and consulting: developer documentation, documentation automation, and authoring-tool migration.">
   <PageHeader
     title="Services"
-    intro="I work with product and engineering teams on a contract or consulting basis. Here is what that usually looks like."
+    intro="I am open to a full-time role and to consulting work. Either way, this is what I do."
   />
 
   <div class="grid gap-10 sm:grid-cols-2">
@@ -24,12 +24,31 @@ const linkedin = SOCIAL.find((s) => s.label === 'LinkedIn');
     }
   </div>
 
-  <section class="mt-16 rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+  <section class="mt-16">
+    <h2 class="text-xl font-semibold text-zinc-900 dark:text-zinc-100">How We Can Work Together</h2>
+    <div class="mt-6 grid gap-8 sm:grid-cols-2">
+      <div class="rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          Full-Time Role
+        </h3>
+        <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+          I am looking for a direct-hire senior technical writer position where I can own documentation end to end: strategy, writing, tooling, and the automation that keeps it all accurate.
+        </p>
+      </div>
+      <div class="rounded-lg border border-zinc-200 p-6 dark:border-zinc-800">
+        <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Consulting</h3>
+        <p class="mt-2 text-zinc-600 dark:text-zinc-400">
+          For teams that need a specific outcome, such as a platform migration, an automation pipeline, or an API reference built from your OpenAPI spec. Scoped projects with a clear finish line.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-12 rounded-lg bg-zinc-50 p-6 dark:bg-zinc-900">
     <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">Interested?</h2>
     <p class="mt-2 text-zinc-600 dark:text-zinc-400">
-      {/* TODO: decide how you want to be contacted. */}
-      The easiest way to reach me is on{' '}
-      <a href={linkedin?.href} class="link" rel="me noopener" target="_blank">LinkedIn</a>. Tell me a little about your docs and what is not working, and I will follow up.
+      Whether you are hiring or have a project in mind, the easiest way to reach me is on{' '}
+      <a href={linkedin?.href} class="link" rel="me noopener" target="_blank">LinkedIn</a>. Tell me a little about your team and your docs, and I will follow up.
     </p>
   </section>
 </BaseLayout>
