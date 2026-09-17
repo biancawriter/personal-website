@@ -29,7 +29,10 @@ const work = defineCollection({
   schema: z.object({
     title: z.string(),
     org: z.string(),
-    url: z.url(),
+    // External URL, or a site-relative path like /work/sharon/ for a case study page.
+    url: z.string().refine((u) => u.startsWith('/') || URL.canParse(u), 'must be a URL or a /path'),
+    // Which group the entry appears under on the Work page.
+    group: z.enum(['documentation', 'personal']).default('documentation'),
     // Tools or platforms used. Shown as a short line under the description.
     tools: z.array(z.string()).default([]),
     // Lower numbers appear first.
@@ -37,4 +40,17 @@ const work = defineCollection({
   }),
 });
 
-export const collections = { blog, work };
+/**
+ * Case studies: src/content/case-studies/<slug>.md, rendered at /work/<slug>/.
+ * A Work entry links to one by setting its url to that path.
+ */
+const caseStudies = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    date: z.coerce.date(),
+  }),
+});
+
+export const collections = { blog, work, caseStudies };

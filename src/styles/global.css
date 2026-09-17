@@ -72,6 +72,11 @@
 }
 
 /* Long-form content (blog posts, about page) uses Tailwind Typography's `prose` classes. */
+/* Wide tables scroll sideways on narrow screens instead of breaking the page width. */
+.prose table {
+  display: block;
+  overflow-x: auto;
+}
 .prose a {
   @apply font-normal text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent dark:text-accent-dark dark:decoration-accent-dark/40 dark:hover:decoration-accent-dark;
 }

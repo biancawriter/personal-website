@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const studies = await getCollection('caseStudies');
+  return studies.map((study) => ({ params: { slug: study.id }, props: { study } }));
+}
+
+const { study } = Astro.props;
+const { Content } = await render(study);
+---
+
+<BaseLayout title={study.data.title} description={study.data.description}>
+  <article>
+    <header class="mb-8">
+      <p class="text-sm text-zinc-500">
+        <a href="/work/" class="link">Work</a> / Personal Projects
+      </p>
+      <h1 class="mt-2 text-3xl font-semibold tracking-tight text-zinc-900 sm:text-4xl dark:text-zinc-100">
+        {study.data.title}
+      </h1>
+    </header>
+
+    <div class="prose prose-zinc max-w-none dark:prose-invert">
+      <Content />
+    </div>
+  </article>
+
+  <p class="mt-12">
+    <a href="/work/" class="link text-sm">← All work</a>
+  </p>
+</BaseLayout>

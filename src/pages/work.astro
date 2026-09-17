@@ -3,34 +3,64 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
 import { getCollection, render } from 'astro:content';
 
+const GROUPS = [
+  { id: 'documentation', title: 'Documentation', lead: 'Publicly available documentation I have written or maintained.' },
+  { id: 'personal', title: 'Personal Projects', lead: 'Things I built or tinkered with.' },
+] as const;
+
 const items = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(items.map(async (item) => ({ item, Content: (await render(item)).Content })));
+const groups = GROUPS.map((g) => ({ ...g, entries: rendered.filter(({ item }) => item.data.group === g.id) })).filter(
+  (g) => g.entries.length > 0,
+);
 ---
 
-<BaseLayout title="Work" description="Public documentation Bianca Ragsdale has written and maintained.">
-  <PageHeader title="Work" intro="Publicly available documentation I have written or maintained." />
+<BaseLayout title="Work" description="Documentation Bianca Ragsdale has written and maintained, and personal projects she has built.">
+  <PageHeader title="Work" />
 
-  <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">
-    {
-      rendered.map(({ item, Content }) => (
-        <li class="py-8 first:pt-0">
-          <h2 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-            <a href={item.data.url} class="hover:text-accent dark:hover:text-accent-dark" rel="noopener" target="_blank">
-              {item.data.title} ↗
-            </a>
-          </h2>
-          <p class="mt-1 text-sm text-zinc-500">{item.data.org}</p>
-          {/* Description: the entry's Markdown body, styled to match plain page text. */}
-          <div class="rich mt-3 text-zinc-600 dark:text-zinc-400">
-            <Content />
-          </div>
-          {item.data.tools.length > 0 && (
-            <p class="mt-3 text-sm text-zinc-500">
-              <span class="font-medium">Built with:</span> {item.data.tools.join(', ')}
-            </p>
-          )}
-        </li>
-      ))
-    }
-  </ul>
+  {/* Group name in a left column on wider screens; stacked with a rule between groups on phones. */}
+  {
+    groups.map((group, i) => (
+      <section
+        class:list={[
+          'sm:grid sm:grid-cols-[11rem_1fr] sm:gap-x-10',
+          i > 0 && 'mt-12 border-t border-zinc-200 pt-12 dark:border-zinc-800',
+        ]}
+      >
+        <div class="mb-6 sm:sticky sm:top-8 sm:mb-0 sm:self-start">
+          <h2 class="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">{group.title}</h2>
+          <p class="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{group.lead}</p>
+        </div>
+        <ul class="divide-y divide-zinc-200 dark:divide-zinc-800">
+          {group.entries.map(({ item, Content }) => {
+            const external = !item.data.url.startsWith('/');
+            return (
+              <li class="py-8 first:pt-0 last:pb-0">
+                <h3 class="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                  <a
+                    href={item.data.url}
+                    class="hover:text-accent dark:hover:text-accent-dark"
+                    rel={external ? 'noopener' : undefined}
+                    target={external ? '_blank' : undefined}
+                  >
+                    {item.data.title} {external ? '↗' : '→'}
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm text-zinc-500">{item.data.org}</p>
+                {/* Description: the entry's Markdown body, styled to match plain page text. */}
+                <div class="rich mt-3 text-zinc-600 dark:text-zinc-400">
+                  <Content />
+                </div>
+                {item.data.tools.length > 0 && (
+                  <p class="mt-3 text-sm text-zinc-500">
+                    <span class="font-medium">Built with:</span> {item.data.tools.join(', ')}
+                  </p>
+                )}
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))
+  }
 </BaseLayout>
