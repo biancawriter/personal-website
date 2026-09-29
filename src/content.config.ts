@@ -20,18 +20,18 @@ const blog = defineCollection({
 });
 
 /**
- * Portfolio items: src/content/work/<slug>.md
+ * Portfolio items: src/content/portfolio/<slug>.md
  * Each file is one project. The Markdown body is the description, so links and
  * inline code work there.
  */
-const work = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/work' }),
+const portfolio = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/portfolio' }),
   schema: z.object({
     title: z.string(),
     org: z.string(),
-    // External URL, or a site-relative path like /work/sharon/ for a case study page.
+    // External URL, or a site-relative path like /portfolio/sharon/ for a case study page.
     url: z.string().refine((u) => u.startsWith('/') || URL.canParse(u), 'must be a URL or a /path'),
-    // Which group the entry appears under on the Work page.
+    // Which group the entry appears under on the Portfolio page.
     group: z.enum(['documentation', 'personal']).default('documentation'),
     // Tools or platforms used. Shown as a short line under the description.
     tools: z.array(z.string()).default([]),
@@ -41,8 +41,8 @@ const work = defineCollection({
 });
 
 /**
- * Case studies: src/content/case-studies/<slug>.md, rendered at /work/<slug>/.
- * A Work entry links to one by setting its url to that path.
+ * Case studies: src/content/case-studies/<slug>.md, rendered at /portfolio/<slug>/.
+ * A portfolio entry links to one by setting its url to that path.
  */
 const caseStudies = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/case-studies' }),
@@ -53,4 +53,4 @@ const caseStudies = defineCollection({
   }),
 });
 
-export const collections = { blog, work, caseStudies };
+export const collections = { blog, portfolio, caseStudies };

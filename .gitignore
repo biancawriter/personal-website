@@ -13,9 +13,13 @@ yarn-error.log*
 pnpm-debug.log*
 
 
-# environment variables
+# environment variables and secrets
 .env
-.env.production
+.env.*
+!.env.example
+
+# typescript build cache
+*.tsbuildinfo
 
 # macOS-specific files
 .DS_Store
@@ -25,3 +29,6 @@ pnpm-debug.log*
 
 # local artifact sources (Claude Code)
 .artifacts/
+
+# drafts and notes kept out of the public repo
+linkedin-posts/

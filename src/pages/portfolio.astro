@@ -8,15 +8,15 @@ const GROUPS = [
   { id: 'personal', title: 'Personal Projects', lead: 'Things I built or tinkered with.' },
 ] as const;
 
-const items = (await getCollection('work')).sort((a, b) => a.data.order - b.data.order);
+const items = (await getCollection('portfolio')).sort((a, b) => a.data.order - b.data.order);
 const rendered = await Promise.all(items.map(async (item) => ({ item, Content: (await render(item)).Content })));
 const groups = GROUPS.map((g) => ({ ...g, entries: rendered.filter(({ item }) => item.data.group === g.id) })).filter(
   (g) => g.entries.length > 0,
 );
 ---
 
-<BaseLayout title="Work" description="Documentation Bianca Ragsdale has written and maintained, and personal projects she has built.">
-  <PageHeader title="Work" />
+<BaseLayout title="Portfolio" description="Documentation Bianca Ragsdale has written and maintained, and personal projects she has built.">
+  <PageHeader title="Portfolio" />
 
   {/* Group name in a left column on wider screens; stacked with a rule between groups on phones. */}
   {

@@ -38,7 +38,8 @@ The script is `scripts/og-image.mjs`.
 | `src/consts.ts` | Site title, nav items, social links, and the `SHOW_WRITING` flag that hides the blog until there are posts |
 | `src/data/services.ts`, `src/data/resources.ts` | Copy for the Services and Resources pages |
 | `src/content/blog/*.md` | Blog posts. Filename = URL slug. Set `draft: true` to hide from production. |
-| `src/content/work/*.md` | Portfolio entries (one file per project) |
+| `src/content/portfolio/*.md` | Portfolio entries (one file per project) |
+| `src/content/case-studies/*.md` | Long-form write-ups, rendered at `/portfolio/<slug>/` |
 | `src/content.config.ts` | Frontmatter schemas for the collections above |
 | `src/pages/` | One file per route |
 | `src/layouts/BaseLayout.astro` | `<head>`, header, footer |

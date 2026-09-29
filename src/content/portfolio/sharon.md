@@ -1,7 +1,7 @@
 ---
 title: 'Sharon: A Web App to Automate Tasks on a Reselling Site'
 org: 'Personal project, 2026'
-url: '/work/sharon/'
+url: '/portfolio/sharon/'
 group: 'personal'
 tools: ['Python', 'FastAPI', 'Next.js', 'PostgreSQL', 'Supabase', 'Stripe', 'Railway', 'Resend', 'Claude Code']
 order: 1

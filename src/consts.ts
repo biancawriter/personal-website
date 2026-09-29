@@ -20,7 +20,7 @@ export const SHOW_WRITING = false;
 
 export const NAV = [
   { label: 'Services', href: '/services/' },
-  { label: 'Work', href: '/work/' },
+  { label: 'Portfolio', href: '/portfolio/' },
   { label: 'Writing', href: '/writing/' },
   { label: 'Resources', href: '/resources/' },
   { label: 'About', href: '/about/' },
