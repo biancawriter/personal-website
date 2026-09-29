@@ -26,6 +26,18 @@ const ogImage = new URL('/og.png', Astro.site);
 <html lang="en">
   <head>
     <meta charset="utf-8" />
+    {/* Google Analytics. Production builds only, so local dev visits are not counted. */}
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-0RKY6Q8KNC"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-0RKY6Q8KNC');
+        </script>
+      </>
+    )}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
