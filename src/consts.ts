@@ -8,7 +8,7 @@ export const SITE = {
   description:
     'Senior technical writer specializing in developer documentation, docs-as-code, and AI-assisted documentation workflows.',
   author: 'Bianca Ragsdale',
-  location: 'Glendale, CA',
+  location: 'Los Angeles, CA',
 };
 
 /**
