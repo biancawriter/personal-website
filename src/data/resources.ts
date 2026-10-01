@@ -1,5 +1,5 @@
 /**
- * Links rendered on /resources/. Two sections: community/reading, and tools.
+ * Links rendered on /resources/. Three sections: community/reading, books, and tools.
  */
 export const RESOURCES = [
   {
@@ -21,6 +21,28 @@ export const RESOURCES = [
     title: 'Dachary Carey',
     url: 'https://dacharycarey.com/',
     description: 'Writing on developer docs, docs-as-code, and documentation engineering.',
+  },
+] as const;
+
+export const BOOKS = [
+  {
+    title: 'The Elements of Style',
+    authors: 'William Strunk and E. B. White',
+    url: 'https://www.barnesandnoble.com/w/the-elements-of-style-william-strunk/1116670762',
+    description: 'Short and concise, just like the writing style the authors recommend.',
+  },
+  {
+    title: 'Eats, Shoots & Leaves: The Zero Tolerance Approach to Punctuation',
+    authors: 'Lynne Truss',
+    url: 'https://www.barnesandnoble.com/w/eats-shoots-leaves-lynne-truss/1100734289',
+    description:
+      'This is like the cheeky British descendant of "The Elements of Style." If dry wit helps you remember rules better, this book is for you.',
+  },
+  {
+    title: 'On Writing: A Memoir of the Craft',
+    authors: 'Stephen King',
+    url: 'https://www.barnesandnoble.com/w/on-writing-stephen-king/1100630876',
+    description: 'Part memoir, part manual, this book has practical advice for how to write prose that connects with people.',
   },
 ] as const;
 
