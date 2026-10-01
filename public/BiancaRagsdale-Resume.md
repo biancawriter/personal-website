@@ -1,10 +1,12 @@
 # **BIANCA RAGSDALE**
 
-[LinkedIn](https://www.linkedin.com/in/biancaragsdale/) • [GitHub](https://github.com/biancawriter) • [Website](https://www.biancaragsdale.com)
+Los Angeles, CA
+
+[LinkedIn](https://www.linkedin.com/in/biancaragsdale/) | [GitHub](https://github.com/biancawriter) | [Website](https://www.biancaragsdale.com)
 
 # **EXPERIENCE**
 
-## **Senior Technical Writer	February 2023 to Present**
+## **Senior Technical Writer	February 2023 to September 2026**
 
 LandingAI, Remote
 
