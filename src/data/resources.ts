@@ -1,5 +1,5 @@
 /**
- * Links rendered on /resources/. Three sections: community/reading, books, and tools.
+ * Links rendered on /resources/. Four sections: community/reading, style guides, books, and tools.
  */
 export const RESOURCES = [
   {
@@ -21,6 +21,27 @@ export const RESOURCES = [
     title: 'Dachary Carey',
     url: 'https://dacharycarey.com/',
     description: 'Writing on developer docs, docs-as-code, and documentation engineering.',
+  },
+] as const;
+
+export const STYLE_GUIDES = [
+  {
+    title: 'Apple Style Guide',
+    url: 'https://support.apple.com/guide/applestyleguide/welcome/web',
+    description:
+      "This is my go-to style guide when creating technical content. Like most of Apple's products, the content is intentionally designed to be simple and easy to understand.",
+  },
+  {
+    title: 'Google Developer Documentation Style Guide',
+    url: 'https://developers.google.com/style',
+    description:
+      "If you're primarily creating content for software developers, I recommend this style guide. It provides guidance on how to document command-line interfaces, API calls, and code blocks. It also addresses how and when to apply inline code formatting.",
+  },
+  {
+    title: 'Microsoft Writing Style Guide',
+    url: 'https://learn.microsoft.com/en-us/style-guide/welcome/',
+    description:
+      'This is the most comprehensive style guide for technical writers. This was my go-to resource when I first started in tech comm because the printed copy was easy to navigate.',
   },
 ] as const;
 

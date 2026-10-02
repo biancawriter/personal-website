@@ -1,12 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHeader from '../components/PageHeader.astro';
-import { RESOURCES, BOOKS, TOOLS } from '../data/resources';
+import { RESOURCES, STYLE_GUIDES, BOOKS, TOOLS } from '../data/resources';
 
 type Item = { title: string; url: string; description: string; authors?: string };
 
 const sections: { heading: string; intro?: string; items: readonly Item[] }[] = [
   { heading: 'Communities and People Worth Following', items: RESOURCES },
+  {
+    heading: 'Style Guides for Technical Writers',
+    intro:
+      "If you're just getting started in technical communication, I recommend becoming familiar with at least one tech writing style guide. Here are a few great ones.",
+    items: STYLE_GUIDES,
+  },
   {
     heading: 'Books on Writing',
     intro:
@@ -17,8 +23,8 @@ const sections: { heading: string; intro?: string; items: readonly Item[] }[] = 
 ];
 ---
 
-<BaseLayout title="Resources" description="Communities, books, and tools Bianca Ragsdale recommends for technical writers.">
-  <PageHeader title="Resources" intro="Things I have found useful as a technical writer. This list is constantly evolving." />
+<BaseLayout title="Resources" description="Communities, style guides, books, and tools Bianca Ragsdale recommends for technical writers.">
+  <PageHeader title="Resources" intro="Resources I have found useful as a technical writer and that I recommend to others starting in technical communication." />
 
   {
     sections.map(({ heading, intro, items }) => (
